@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en", xmlns:th=" http://thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de estudiantes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="/estudiantes">Control de estudiantes</a>
+    <a class="navbar-brand" href="/estudiantes/nuevo">Registro</a>
+</nav>
+
+<div class="container">
+    <h1>listado de estudiantes</h1>
+</div>
+<br>
+<div >
+    <a th:href="@{/estudiantes/nuevo}" class="btn btn-primary btn-sm mb3">Agregar Estudiante</a>
+</div>
+<br>
+<table class="table">
+    <thead class="table-dark">
+    <th>nombre</th>
+    <th>apellido</th>
+    <th>email</th>
+    <th>acciones</th>
+    </thead>
+    <tbody>
+      <tr th:each="estudiante : ${estudiantes}">
+        <td th:text="${estudiante.nombre}">nombre</td>
+        <td th:text="${estudiante.apellido}">apellido</td>
+        <td th:text="${estudiante.email}">email</td>
+          <td>
+              <a th:href="@{/estudiantes/editar/{id}(id=${estudiante.id})}" class="btn btn-info" >Editar</a>
+              <a th:href="@{/estudiantes/{id}(id=${estudiante.id})}" class="btn btn-danger" >Eliminar</a>
+          </td>
+      </tr>
+    </tbody>
+</table>
+</body>
+</html>
